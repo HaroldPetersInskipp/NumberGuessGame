@@ -1,10 +1,304 @@
 [
     {
+        "id": "705c53da69bbdffb",
+        "type": "tab",
+        "label": "Number game",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "358e8305f0fbed34",
+        "type": "ui_button",
+        "z": "705c53da69bbdffb",
+        "name": "",
+        "group": "80eb067dc9ec96c7",
+        "order": 11,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Start",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 520,
+        "wires": [
+            [
+                "071b01e9e311d8a9"
+            ]
+        ]
+    },
+    {
+        "id": "5a074dd549aa08a7",
+        "type": "function",
+        "z": "705c53da69bbdffb",
+        "name": "random between min max",
+        "func": "function randomRange (min, max) {\n    min = Math.ceil(min);\n    max = Math.floor(max);\n    return Math.floor(Math.random() * (max - min + 1) + min);\n}\nmsg.payload = randomRange(msg.min, msg.max)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 520,
+        "wires": [
+            [
+                "1297c515980f71b1",
+                "8ac6f6a4dcb89f6f",
+                "fd93702b0b5337b9",
+                "9326017f5df32504"
+            ]
+        ]
+    },
+    {
+        "id": "76e9e127a8215e25",
+        "type": "inject",
+        "z": "705c53da69bbdffb",
+        "name": "min/max",
+        "props": [
+            {
+                "p": "min",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "p": "max",
+                "v": "1000000",
+                "vt": "num"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 520,
+        "y": 520,
+        "wires": [
+            [
+                "5a074dd549aa08a7"
+            ]
+        ]
+    },
+    {
+        "id": "1297c515980f71b1",
+        "type": "debug",
+        "z": "705c53da69bbdffb",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 990,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "f3b71b0d030307a2",
+        "type": "change",
+        "z": "705c53da69bbdffb",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "min",
+                "pt": "msg",
+                "to": "#:(memoryOnly)::min",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "max",
+                "pt": "msg",
+                "to": "#:(memoryOnly)::max",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 500,
+        "y": 560,
+        "wires": [
+            [
+                "5a074dd549aa08a7"
+            ]
+        ]
+    },
+    {
+        "id": "8ac6f6a4dcb89f6f",
+        "type": "change",
+        "z": "705c53da69bbdffb",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "#:(memoryOnly)::guess",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1020,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a64f2d009c14f983",
+        "type": "ui_button",
+        "z": "705c53da69bbdffb",
+        "name": "",
+        "group": "80eb067dc9ec96c7",
+        "order": 8,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Higher",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 560,
+        "wires": [
+            [
+                "6b6c5f9152d02248"
+            ]
+        ]
+    },
+    {
+        "id": "af6525eed4bc2780",
+        "type": "ui_button",
+        "z": "705c53da69bbdffb",
+        "name": "",
+        "group": "80eb067dc9ec96c7",
+        "order": 15,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Lower",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 600,
+        "wires": [
+            [
+                "6a6a926a36bcaf9b"
+            ]
+        ]
+    },
+    {
+        "id": "fba8e9bba3733437",
+        "type": "ui_button",
+        "z": "705c53da69bbdffb",
+        "name": "",
+        "group": "80eb067dc9ec96c7",
+        "order": 12,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Correct",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 440,
+        "wires": [
+            [
+                "8b7976f5f9e5dd18",
+                "f60c10661f506097"
+            ]
+        ]
+    },
+    {
+        "id": "fd93702b0b5337b9",
+        "type": "ui_text",
+        "z": "705c53da69bbdffb",
+        "group": "80eb067dc9ec96c7",
+        "order": 3,
+        "width": 6,
+        "height": 2,
+        "name": "",
+        "label": "Computers Guess",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 1030,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "071b01e9e311d8a9",
+        "type": "change",
+        "z": "705c53da69bbdffb",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "#:(memoryOnly)::min",
+                "pt": "flow",
+                "to": "0",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "#:(memoryOnly)::max",
+                "pt": "flow",
+                "to": "1000000",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 520,
+        "wires": [
+            [
+                "f3b71b0d030307a2"
+            ]
+        ]
+    },
+    {
         "id": "8d81b6b438bb97b1",
         "type": "ui_text",
         "z": "705c53da69bbdffb",
         "group": "80eb067dc9ec96c7",
-        "order": 2,
+        "order": 1,
         "width": 10,
         "height": 3,
         "name": "",
@@ -17,14 +311,329 @@
         "wires": []
     },
     {
+        "id": "6b6c5f9152d02248",
+        "type": "change",
+        "z": "705c53da69bbdffb",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "#:(memoryOnly)::min",
+                "pt": "flow",
+                "to": "#:(memoryOnly)::guess",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 560,
+        "wires": [
+            [
+                "f3b71b0d030307a2"
+            ]
+        ]
+    },
+    {
+        "id": "6a6a926a36bcaf9b",
+        "type": "change",
+        "z": "705c53da69bbdffb",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "#:(memoryOnly)::max",
+                "pt": "flow",
+                "to": "#:(memoryOnly)::guess",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 600,
+        "wires": [
+            [
+                "f3b71b0d030307a2"
+            ]
+        ]
+    },
+    {
+        "id": "9326017f5df32504",
+        "type": "counter",
+        "z": "705c53da69bbdffb",
+        "name": "",
+        "init": "0",
+        "step": "1",
+        "lower": "",
+        "upper": "",
+        "mode": "increment",
+        "outputs": "1",
+        "x": 820,
+        "y": 480,
+        "wires": [
+            [
+                "05cfae02574a4f5c",
+                "b6954e7cd3fcb666"
+            ]
+        ]
+    },
+    {
+        "id": "05cfae02574a4f5c",
+        "type": "debug",
+        "z": "705c53da69bbdffb",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 990,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "b6954e7cd3fcb666",
+        "type": "change",
+        "z": "705c53da69bbdffb",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "#:(memoryOnly)::numberOfGuesses",
+                "pt": "flow",
+                "to": "count",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1060,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b87c63a30b538e32",
+        "type": "change",
+        "z": "705c53da69bbdffb",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 480,
+        "wires": [
+            [
+                "9326017f5df32504"
+            ]
+        ]
+    },
+    {
+        "id": "8b7976f5f9e5dd18",
+        "type": "delay",
+        "z": "705c53da69bbdffb",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 120,
+        "y": 480,
+        "wires": [
+            [
+                "b87c63a30b538e32"
+            ]
+        ]
+    },
+    {
+        "id": "f60c10661f506097",
+        "type": "change",
+        "z": "705c53da69bbdffb",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "#:(memoryOnly)::numberOfGuesses",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 440,
+        "wires": [
+            [
+                "7cfc4b51c1ed6ae7"
+            ]
+        ]
+    },
+    {
+        "id": "7cfc4b51c1ed6ae7",
+        "type": "function",
+        "z": "705c53da69bbdffb",
+        "name": "format",
+        "func": "msg.payload = `It took ${msg.payload} guesses to find your number.`;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 600,
+        "wires": [
+            [
+                "fd93702b0b5337b9"
+            ]
+        ]
+    },
+    {
+        "id": "fcaaaf3c41c39694",
+        "type": "ui_spacer",
+        "z": "705c53da69bbdffb",
+        "name": "spacer",
+        "group": "80eb067dc9ec96c7",
+        "order": 2,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "5e634d832d6e41ad",
+        "type": "ui_spacer",
+        "z": "705c53da69bbdffb",
+        "name": "spacer",
+        "group": "80eb067dc9ec96c7",
+        "order": 4,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "5fa57a685be7f9a9",
+        "type": "ui_spacer",
+        "z": "705c53da69bbdffb",
+        "name": "spacer",
+        "group": "80eb067dc9ec96c7",
+        "order": 5,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "3efb8c1b6a2f6b7a",
+        "type": "ui_spacer",
+        "z": "705c53da69bbdffb",
+        "name": "spacer",
+        "group": "80eb067dc9ec96c7",
+        "order": 6,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "6ec8c6487c17fe53",
+        "type": "ui_spacer",
+        "z": "705c53da69bbdffb",
+        "name": "spacer",
+        "group": "80eb067dc9ec96c7",
+        "order": 7,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "e3a8e807f2c677f4",
+        "type": "ui_spacer",
+        "z": "705c53da69bbdffb",
+        "name": "spacer",
+        "group": "80eb067dc9ec96c7",
+        "order": 9,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "1f6972c174a952ab",
+        "type": "ui_spacer",
+        "z": "705c53da69bbdffb",
+        "name": "spacer",
+        "group": "80eb067dc9ec96c7",
+        "order": 10,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "af84e317781ebe5e",
+        "type": "ui_spacer",
+        "z": "705c53da69bbdffb",
+        "name": "spacer",
+        "group": "80eb067dc9ec96c7",
+        "order": 13,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "d575211b5fc1a622",
+        "type": "ui_spacer",
+        "z": "705c53da69bbdffb",
+        "name": "spacer",
+        "group": "80eb067dc9ec96c7",
+        "order": 14,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "8980d6398d469e06",
+        "type": "ui_spacer",
+        "z": "705c53da69bbdffb",
+        "name": "spacer",
+        "group": "80eb067dc9ec96c7",
+        "order": 16,
+        "width": 2,
+        "height": 1
+    },
+    {
         "id": "80eb067dc9ec96c7",
         "type": "ui_group",
         "name": "1 in a Million",
         "tab": "985f4c3dcbef1a7d",
         "order": 1,
         "disp": true,
-        "width": "30",
-        "collapse": false
+        "width": "10",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "985f4c3dcbef1a7d",
