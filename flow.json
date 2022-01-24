@@ -1,0 +1,37 @@
+[
+    {
+        "id": "8d81b6b438bb97b1",
+        "type": "ui_text",
+        "z": "705c53da69bbdffb",
+        "group": "80eb067dc9ec96c7",
+        "order": 2,
+        "width": 10,
+        "height": 3,
+        "name": "",
+        "label": "Rules",
+        "format": "Think of a number between 1 and one million, write it down if it helps. Tell the computer to guess higher or lower than the current guess.",
+        "layout": "col-center",
+        "className": "",
+        "x": 990,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "80eb067dc9ec96c7",
+        "type": "ui_group",
+        "name": "1 in a Million",
+        "tab": "985f4c3dcbef1a7d",
+        "order": 1,
+        "disp": true,
+        "width": "30",
+        "collapse": false
+    },
+    {
+        "id": "985f4c3dcbef1a7d",
+        "type": "ui_tab",
+        "name": "Number Guess Game",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
